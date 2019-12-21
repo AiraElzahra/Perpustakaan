@@ -1,6 +1,10 @@
 <?php
-        $koneksi = new mysqli ("localhost","root","","db_perpustakaan");
+session_start();
 error_reporting(0);
+
+
+        $koneksi = new mysqli ("localhost","root","","db_perpustakaan");
+
 ?>
 
 

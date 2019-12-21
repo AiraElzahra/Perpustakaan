@@ -19,15 +19,15 @@
                                             <th>Tanggal Pinjam</th>
                                             <th>Tanggal Kembali</th>
                                             <th>Terlambat</th>
-                                            <th>Status</th>
+                                            <th>Status</th> 
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
                                             $no_urut = 0;
-                                            $sql = $koneksi->query("select* from tb_transaksi where $status='pinjam'");
-                                            while($data=$sql->fetch_assoc()){
+                                            $sql = $koneksi->query("select* from tb_transaksi where status='pinjam'");
+                                            while($data=$sql->fetch_assoc()){   
                                             $no_urut++;
                                     ?>
                                     <tr> 
@@ -37,6 +37,25 @@
                                     <td><?php echo $data['nama']; ?></td>
                                     <td><?php echo $data['tgl_pinjam']; ?></td>
                                     <td><?php echo $data['tgl_kembali']; ?></td>
+                                    <td>
+                                        <?php 
+                                        $denda = 1000;
+                                        $tgl_dateline = $data['tgl_kembali'];
+                                        $tgl_kembali = date('Y-m-d');
+
+                                        $lambat = terlambat($tgl_dateline2 ,$tgl_kembali);
+                                        $denda1 = $lambat*$denda;
+
+                                        if($lambat>0){
+                                            echo "
+                                            <font color='red'>$lambat hari<br>(Rp $denda1)</font>
+                                            ";
+                                        }
+                                        else{
+                                            echo $lambat."Hari";
+                                        }
+                                        ?>
+                                    </td>
                                     <td><?php echo $data['status']; ?></td>
                                     <td> <a href="?page=transaksi&aksi=ubah&id=<?php echo $data['nim']; ?>" class="btn btn-info">Ubah</a> 
                                         <a onclick="return confirm( 'Anda Yakin Akan Menghapus data ini .....???')"

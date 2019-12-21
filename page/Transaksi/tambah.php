@@ -59,7 +59,7 @@ $tgl_pinjam = $_POST['tgl_pinjam'];
 $tgl_kembali = $_POST['tgl_kembali'];
 $terlambat = $_POST['terlambat'];
 $status = $_POST['status'];
-
+   
 $simpan = $_POST['simpan'];
 
 if ($simpan) {
